@@ -21,7 +21,7 @@ const getMediaType = (isAudio, isVideo) => {
   return 'image'
 }
 
-const CardMedia = () => {
+const CardMedia = ({ handlePlaybackButtonClick }) => {
   const {
     state: { imageUrl, isAudio, isVideo }
   } = useContext(GlobalContext)
@@ -31,7 +31,7 @@ const CardMedia = () => {
 
   return (
     <>
-      <MediaComponent isLoading={isLoading} />
+      <MediaComponent isLoading={isLoading} handlePlaybackButtonClick={handlePlaybackButtonClick} />
       {isLoading && (
         <ImageLoadCatcher src={imageUrl} onLoad={() => setIsLoading(false)} />
       )}

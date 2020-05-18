@@ -42,7 +42,11 @@ const Video = props => {
       className={`${classNames.mediaWrapper} ${classNames.videoWrapper}`}
       {...props}
     >
-      <Controls MediaComponent={VideoDOM} mediaProps={mediaProps} />
+      <Controls
+        MediaComponent={VideoDOM}
+        mediaProps={mediaProps}
+        handlePlaybackButtonClick={props.handlePlaybackButtonClick}
+      />
     </Wrap>
   )
 }

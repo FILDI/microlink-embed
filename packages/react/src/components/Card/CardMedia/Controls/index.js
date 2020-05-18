@@ -76,7 +76,7 @@ const ControlsTop = styled('div')`
     !isVisible &&
     css`
     *[class*="${classNames.mediaControls}"]:not(.${classNames.progressTime}) {
-      transition: ${transition.medium('opacity', 'visibility')}; 
+      transition: ${transition.medium('opacity', 'visibility')};
       opacity: 0;
       visibility: hidden;
     }
@@ -96,7 +96,7 @@ const getNextPlaybackRate = rate => {
   }
 }
 
-const Controls = ({ MediaComponent, mediaProps }) => {
+const Controls = ({ MediaComponent, mediaProps, handlePlaybackButtonClick }) => {
   const {
     props: { autoPlay, controls, muted, loop, size }
   } = useContext(GlobalContext)
@@ -121,8 +121,14 @@ const Controls = ({ MediaComponent, mediaProps }) => {
     () => ({
       onCanPlay: () => setIsBuffering(false),
       onLoadedMetadata: e => setDuration(e.currentTarget.duration),
-      onPause: () => setIsPlaying(false),
-      onPlay: () => setIsPlaying(true),
+      onPause: () => {
+        setIsPlaying(false),
+        handlePlaybackButtonClick('pause')
+      },
+      onPlay: () => {
+        setIsPlaying(true)
+        handlePlaybackButtonClick('play')
+      },
       onPlaying: () => setIsBuffering(false),
       onProgress: e => setBuffered(e.currentTarget.buffered),
       onRateChange: e => setPlaybackRate(e.currentTarget.playbackRate),
@@ -420,7 +426,9 @@ const Controls = ({ MediaComponent, mediaProps }) => {
 
           {!hasInteracted ? (
             <InnerWrap>
-              <PlaybackButton cardSize={size} />
+              <PlaybackButton
+                cardSize={size}
+              />
             </InnerWrap>
           ) : (
             <>
@@ -435,7 +443,10 @@ const Controls = ({ MediaComponent, mediaProps }) => {
                     />
                   )}
 
-                  <PlaybackButton cardSize={size} isPlaying={isPlaying} />
+                  <PlaybackButton
+                    cardSize={size}
+                    isPlaying={isPlaying}
+                  />
 
                   {isNotSmall && (
                     <SeekButton
