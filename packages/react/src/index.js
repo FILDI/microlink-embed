@@ -231,7 +231,7 @@ Microlink.defaultProps = {
   muted: true,
   playsInline: true,
   size: 'normal',
-  handlePlaybackButtonClick: (state) => { console.log(state) }
+  handlePlaybackButtonClick: () => {}
 }
 
 Microlink.propTypes = {

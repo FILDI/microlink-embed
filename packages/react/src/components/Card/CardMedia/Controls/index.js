@@ -121,14 +121,8 @@ const Controls = ({ MediaComponent, mediaProps, handlePlaybackButtonClick }) => 
     () => ({
       onCanPlay: () => setIsBuffering(false),
       onLoadedMetadata: e => setDuration(e.currentTarget.duration),
-      onPause: () => {
-        setIsPlaying(false),
-        handlePlaybackButtonClick('pause')
-      },
-      onPlay: () => {
-        setIsPlaying(true)
-        handlePlaybackButtonClick('play')
-      },
+      onPause: () => setIsPlaying(false),
+      onPlay: () => setIsPlaying(true),
       onPlaying: () => setIsBuffering(false),
       onProgress: e => setBuffered(e.currentTarget.buffered),
       onRateChange: e => setPlaybackRate(e.currentTarget.playbackRate),
@@ -161,9 +155,10 @@ const Controls = ({ MediaComponent, mediaProps, handlePlaybackButtonClick }) => 
         if (!hasInteracted) {
           setHasInteracted(true)
         }
-
+        handlePlaybackButtonClick('play')
         mediaRef.current.play()
       } else {
+        handlePlaybackButtonClick('pause')
         mediaRef.current.pause()
       }
     }
