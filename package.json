@@ -1,5 +1,6 @@
 {
   "name": "@microlink/root",
+  "version": "0.0.1",
   "description": "Turns links into a beautiful previews",
   "homepage": "https://microlink.io/docs/sdk",
   "author": {
