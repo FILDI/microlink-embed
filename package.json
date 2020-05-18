@@ -25,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/microlinkhq/sdk/issues"
   },
-  "devDependencies": {
+  "dependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "eachdir": "latest",
